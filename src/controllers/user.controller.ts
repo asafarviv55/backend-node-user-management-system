@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpException, HttpStatus, UseGuards } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { User } from '@prisma/client';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard'; // Import the JwtAuthGuard
+
 
 @Controller('api/users')
+@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -27,4 +30,8 @@ export class UserController {
       throw new HttpException('Failed to retrieve users', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+
 }
+
+ 
