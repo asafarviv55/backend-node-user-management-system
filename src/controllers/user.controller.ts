@@ -12,7 +12,7 @@ export class UserController {
   @Post()
   async createUser(@Body() user: User) {
     try {
-      const newUser = await this.userService.createUser(user);
+      const newUser = await this.userService.createUser(user);3-
       return { success: true, user: newUser };
     } catch (error) {
       // Handle service errors
